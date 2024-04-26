@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k9s
+  namespace: k9s
+  labels:
+    app: k9s
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k9s
+  template:
+    metadata:
+      labels:
+        app: k9s
+    spec:
+      serviceAccountName: k9s-sa
+      containers:
+        - name: k9s
+          image: ghcr.io/lordmathis/k9s-web:latest
+          ports:
+            - containerPort: 7681
