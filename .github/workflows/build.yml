@@ -27,10 +27,16 @@ jobs:
         registry: ${{ env.REGISTRY }}
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: lowercase repo owner
+      run: |
+        REPO_OWNER=`echo ${{ github.actor }} | tr '[:upper:]' '[:lower:]'`
+        echo REPO_OWNER=$REPO_OWNER
+        echo REPO_OWNER=$REPO_OWNER >>${GITHUB_ENV}
 
     - name: Build and push Docker image
       uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
       with:
         context: .
         push: true
-        tags: ${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest
+        tags: ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.IMAGE_NAME }}:latest
