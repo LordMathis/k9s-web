@@ -1,0 +1,12 @@
+name: Renovate Bot Github Action
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  renovate:
+    steps:
+    - uses: actions/checkout@v4
+    - name: Renovate Bot GitHub Action
+      uses: renovatebot/github-action@v40.1.11
