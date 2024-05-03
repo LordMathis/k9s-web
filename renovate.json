@@ -1,0 +1,33 @@
+{
+    "extends": [
+        "config:best-practices"
+    ],
+    "regexManagers": [
+        {
+            "fileMatch": [
+                "^versions\\.env$"
+            ],
+            "matchStrings": [
+                "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\n.*?=(?<currentValue>.*)"
+            ],
+            "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
+        }
+    ],
+    "packageRules": [
+        {
+            "packagePatterns": [
+                ".*"
+            ],
+            "managers": [
+                "regex"
+            ],
+            "extractVersion": "^(v|release-)?(?<version>.*)$"
+        }
+    ],
+    "pin": {
+        "automerge": true
+    },
+    "digest": {
+        "automerge": true
+    }
+}

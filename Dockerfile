@@ -2,8 +2,8 @@ FROM alpine
 
 ARG TARGET_ARCH
 
-ARG TTYD_VERSION=1.7.7
-ARG K9S_VERSION=0.32.4
+ARG TTYD_VERSION
+ARG K9S_VERSION
 
 RUN apk add --no-cache bash tini
 
