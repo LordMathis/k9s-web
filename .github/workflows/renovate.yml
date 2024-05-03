@@ -6,6 +6,9 @@ on:
 
 jobs:
   renovate:
+
+    runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v4
     - name: Renovate Bot GitHub Action
