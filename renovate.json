@@ -2,8 +2,9 @@
     "extends": [
         "config:best-practices"
     ],
-    "regexManagers": [
+    "customManagers": [
         {
+            "customType": "regex",
             "fileMatch": [
                 "^versions\\.env$"
             ],
@@ -15,11 +16,11 @@
     ],
     "packageRules": [
         {
-            "packagePatterns": [
+            "matchPackagePatterns": [
                 ".*"
             ],
-            "managers": [
-                "regex"
+            "matchManagers": [
+                "custom.regex"
             ],
             "extractVersion": "^(v|release-)?(?<version>.*)$"
         }
