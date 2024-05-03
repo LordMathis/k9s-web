@@ -26,9 +26,7 @@ jobs:
         set -a
         source versions.env
         set +a
-        echo TTYD_VESION=$TTYD_VERSION
-        echo K9S_VERSION=$K9S_VERSION
-        echo TTYD_VESION=$TTYD_VERSION >>${GITHUB_ENV}
+        echo TTYD_VERSION=$TTYD_VERSION >>${GITHUB_ENV}
         echo K9S_VERSION=$K9S_VERSION >>${GITHUB_ENV}
 
     - name: Log in to the Container registry
@@ -41,10 +39,7 @@ jobs:
     - name: lowercase repo owner
       run: |
         REPO_OWNER=`echo ${{ github.actor }} | tr '[:upper:]' '[:lower:]'`
-        echo REPO_OWNER=$REPO_OWNER
         echo REPO_OWNER=$REPO_OWNER >>${GITHUB_ENV}
-        echo ${{ env.TTYD_VERSION }}
-        echo ${{ env.TTYD_VERSION }}
 
     - name: Build and push Docker image
       uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
