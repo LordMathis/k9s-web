@@ -23,7 +23,9 @@ jobs:
 
     - name: Set build args env
       run: |
-        export $(xargs <versions.env)
+        set -a
+        source versions.env
+        set +a
         echo $TTYD_VERSION
         echo $K9S_VERSION
         echo TTYD_VESION=$TTYD_VERSION >>${GITHUB_ENV}
