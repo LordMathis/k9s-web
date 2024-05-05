@@ -28,6 +28,7 @@ jobs:
         set +a
         echo TTYD_VERSION=$TTYD_VERSION >>${GITHUB_ENV}
         echo K9S_VERSION=$K9S_VERSION >>${GITHUB_ENV}
+        echo APP_VERSION=$APP_VERSION >>${GITHUB_ENV}
 
     - name: Log in to the Container registry
       uses: docker/login-action@5f4866a30a54f16a52d2ecb4a3898e9e424939cf
@@ -46,7 +47,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.IMAGE_NAME }}:latest
+        tags: ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.IMAGE_NAME }}:${{ env.APP_VERSION }}
         build-args: |
           TTYD_VERSION=${{ env.TTYD_VERSION }}
           K9S_VERSION=${{ env.K9S_VERSION }}
