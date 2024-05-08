@@ -23,7 +23,8 @@
             "matchManagers": [
                 "custom.regex"
             ],
-            "extractVersion": "^(v|release-)?(?<version>.*)$"
+            "extractVersion": "^(v|release-)?(?<version>.*)$",
+            "automerge": true
         }
     ],
     "pin": {
