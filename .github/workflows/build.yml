@@ -10,6 +10,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: k9s-web
+  REPO_OWNER: lordmathis
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
@@ -46,19 +47,16 @@ jobs:
         registry: ${{ env.REGISTRY }}
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-        
-    - name: lowercase repo owner
-      run: |
-        REPO_OWNER=`echo ${{ github.actor }} | tr '[:upper:]' '[:lower:]'`
-        echo REPO_OWNER=$REPO_OWNER >>${GITHUB_ENV}
 
     - name: Build and push Docker image
       uses: docker/build-push-action@729f7f49266dec5e72fe7339273d3f7e65abacd7
       with:
         context: .
         push: true
-        image: ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.IMAGE_NAME }}
-        tags: ${{ steps.release.outputs.tag_name }},latest
+        tags: |
+          ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.IMAGE_NAME }}:${{ steps.release.outputs.tag_name }}
+          ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.IMAGE_NAME }}:latest
+        addLatest: true
         build-args: |
           TTYD_VERSION=${{ env.TTYD_VERSION }}
           K9S_VERSION=${{ env.K9S_VERSION }}
