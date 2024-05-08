@@ -57,8 +57,8 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.IMAGE_NAME }}:${{ steps.release.outputs.tag_name }}
-        addLatest: true
+        image: ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.IMAGE_NAME }}
+        tags: ${{ steps.release.outputs.tag_name }},latest
         build-args: |
           TTYD_VERSION=${{ env.TTYD_VERSION }}
           K9S_VERSION=${{ env.K9S_VERSION }}
