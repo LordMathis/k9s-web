@@ -10,6 +10,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: k9s-web
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
 
@@ -24,6 +25,12 @@ jobs:
     steps:
     - uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4
 
+    - uses: rymndhng/release-on-push-action@master
+      id: release
+      with:
+        bump_version_scheme: minor
+        use_github_release_notes: true
+
     - name: Set build args env
       run: |
         set -a
@@ -31,7 +38,6 @@ jobs:
         set +a
         echo TTYD_VERSION=$TTYD_VERSION >>${GITHUB_ENV}
         echo K9S_VERSION=$K9S_VERSION >>${GITHUB_ENV}
-        echo APP_VERSION=$APP_VERSION >>${GITHUB_ENV}
 
     - name: Log in to the Container registry
       uses: docker/login-action@d910b140723c904c9e74efef5dc6af05d5143104
@@ -50,7 +56,8 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.IMAGE_NAME }}:${{ env.APP_VERSION }}
+        tags: ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.IMAGE_NAME }}:${{ steps.release.outputs.tag_name }}
+        addLatest: true
         build-args: |
           TTYD_VERSION=${{ env.TTYD_VERSION }}
           K9S_VERSION=${{ env.K9S_VERSION }}
