@@ -24,7 +24,8 @@
                 "custom.regex"
             ],
             "extractVersion": "^(v|release-)?(?<version>.*)$",
-            "automerge": true
+            "automerge": true,
+            "pinDigests": false
         }
     ],
     "pin": {
