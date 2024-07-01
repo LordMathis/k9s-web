@@ -56,7 +56,6 @@ jobs:
         tags: |
           ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.IMAGE_NAME }}:${{ steps.release.outputs.tag_name }}
           ${{ env.REGISTRY }}/${{ env.REPO_OWNER }}/${{ env.IMAGE_NAME }}:latest
-        addLatest: true
         build-args: |
           TTYD_VERSION=${{ env.TTYD_VERSION }}
           K9S_VERSION=${{ env.K9S_VERSION }}
