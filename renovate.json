@@ -17,15 +17,15 @@
     ],
     "packageRules": [
         {
-            "matchPackagePatterns": [
-                ".*"
-            ],
             "matchManagers": [
                 "custom.regex"
             ],
             "extractVersion": "^(v|release-)?(?<version>.*)$",
             "automerge": true,
-            "pinDigests": false
+            "pinDigests": false,
+            "matchPackageNames": [
+                "/.*/"
+            ]
         }
     ],
     "pin": {
