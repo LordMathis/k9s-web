@@ -42,7 +42,7 @@ jobs:
         echo K9S_VERSION=$K9S_VERSION >>${GITHUB_ENV}
 
     - name: Log in to the Container registry
-      uses: docker/login-action@5d8785b43a795ee002a17dbf1a2235dc1997224b
+      uses: docker/login-action@06895751d15a223ec091bea144ad5c7f50d228d0
       with:
         registry: ${{ env.REGISTRY }}
         username: ${{ github.actor }}
