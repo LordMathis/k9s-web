@@ -15,7 +15,7 @@
     {
       "matchManagers": ["custom.regex"],
       "extractVersion": "^(v|release-)?(?<version>.*)$",
-      "automerge": false,
+      "automerge": true,
       "pinDigests": false,
       "matchPackageNames": ["/.*/"]
     },
