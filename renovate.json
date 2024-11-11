@@ -20,7 +20,7 @@
       "matchPackageNames": ["/.*/"]
     },
     {
-      "matchManagers": ["github-actions"],
+      "matchManagers": ["github-actions", "dockerfile"],
       "pinDigests": false
     }
   ]
