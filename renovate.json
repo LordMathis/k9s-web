@@ -1,37 +1,27 @@
 {
-    "extends": [
-        "config:best-practices"
-    ],
-    "ignoreTests": true,
-    "customManagers": [
-        {
-            "customType": "regex",
-            "fileMatch": [
-                "^versions\\.env$"
-            ],
-            "matchStrings": [
-                "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\n.*?=(?<currentValue>.*)"
-            ],
-            "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
-        }
-    ],
-    "packageRules": [
-        {
-            "matchManagers": [
-                "custom.regex"
-            ],
-            "extractVersion": "^(v|release-)?(?<version>.*)$",
-            "automerge": false,
-            "pinDigests": false,
-            "matchPackageNames": [
-                "/.*/"
-            ]
-        }
-    ],
-    "pin": {
-        "enabled": false
-    },
-    "digest": {
-        "enabled": false
+  "extends": ["config:best-practices"],
+  "ignoreTests": true,
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": ["^versions\\.env$"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\n.*?=(?<currentValue>.*)"
+      ],
+      "versioningTemplate": "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}"
     }
+  ],
+  "packageRules": [
+    {
+      "matchManagers": ["custom.regex"],
+      "extractVersion": "^(v|release-)?(?<version>.*)$",
+      "automerge": false,
+      "pinDigests": false,
+      "matchPackageNames": ["/.*/"]
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "pinDigests": false
+    }
+  ]
 }
