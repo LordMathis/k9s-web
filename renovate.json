@@ -21,7 +21,7 @@
                 "custom.regex"
             ],
             "extractVersion": "^(v|release-)?(?<version>.*)$",
-            "automerge": true,
+            "automerge": false,
             "pinDigests": false,
             "matchPackageNames": [
                 "/.*/"
@@ -29,9 +29,9 @@
         }
     ],
     "pin": {
-        "automerge": true
+        "enabled": false
     },
     "digest": {
-        "automerge": true
+        "enabled": false
     }
 }
